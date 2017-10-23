@@ -3,6 +3,12 @@
 #一次性更新本地仓库，并且更新远程仓库
 #author:Bruce ismyblue@163.com
 
+if [ $# -eq 0 ] || [ $1 == "--help" ] ; then
+  echo "--help 帮助"
+  echo "gitupload.sh para1 para2   所带参数会全部变成提交备注" 
+fi
+
+
 str="auto commit"
 
 if [ $# -ge 1 ] ; then
