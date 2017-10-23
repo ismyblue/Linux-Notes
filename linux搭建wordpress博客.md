@@ -1,5 +1,7 @@
 # linux搭建wordpress博客
 
+[TOC]
+
 ## 步骤：
 
 先搭建LAMP环境
@@ -46,8 +48,60 @@ sudo apt install phpmyadmin
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpadmin 
 /*建立 /var/www/html下的软链接，可以在/var/www/html/phpmyadmin里直接访问/usr/share/phpmyadmin里面的程序*/
 ```
+#### 1.5.创建数据库，分配帐号和密码
 
-#### 1.5.重启相关Apache和Mysql服务
+为wordpress程序创建一个数据库，分配管理数据库的帐号和密码。
+有两种操作方式：建议选择命令行，因为不用使用鼠标，全程用键盘五分钟配置网站。
+
+- ***命令行操作方式***
+
+```
+/*登录mysql数据库管理系统*/
+$mysql -u -root -p
+Enter password:
+Welcome to the MySQL monitor. Commands end with ; or \g.
+
+/*创建数据库，databasename是你要为你网站创建的数据库名字：例如bruce_blog*/
+mysql>create databases databasename;
+Query OK, 1 row affected (0.00 sec)
+
+/*为你的网站数据库分配帐号和密码，分配权限.databasename是你的网站数据库的名字，wordpressusername和password是你的网站数据库管理员帐号和密码.记得替换成你想要设置的。hostname通常是localhost，也可以写成服务器的ip地址/
+mysql>greate all privileges on databasename.* to "wordpressusername"@"hostname" identified by "password";
+Query OK, 0 rows affected (0.00 sec)
+
+/*刷新权限*/
+mysql>flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+```
+
+- ***图形化操作方式***
+
+首先登录到phpmyadmin的登录界面，在浏览器输入www.youdomain.com/phpmyadmin/index.php
+或者http:ip//phpmyadmin/index.php
+使用mysql 的root帐号和密码登录。
+
+>(1)为WordPress数据库起个名字（可以使用'wordpress'或'blog'），将其输入到添加新数据库（Create new database）输入框中，并点击添加数据库（Create）。
+
+>(2.)点击左上方的Home图标，返回主界面，然后点击（Privileges）（权限）。如果用户列表中没有WordPress相关用户，创建一个：
+
+>(3).点击添加新用户（Add a new User）
+为WordPress选用一个用户名（推荐使用'wordpress'）并将其输入到用户名（User name）输入框中。（确保下拉式菜单中的“使用文本字段(Use text field:)已被选中）
+
+>(4).选用一个保密性较高的密码（最好是大小写字母、数字及符号的组合），并将其输入到密码（Password）输入框中。（确保下拉式菜单中的“使用文本字段(Use text field:)已被选中），在Re-type输入框内再次输入密码
+
+>(5).记住设定的用户名和密码。
+
+>(6).将所有权限（Global privileges）下的所有选项保留默认状态
+
+>(7).点击Go.
+
+>(8).返回权限（Privileges）界面，点击刚刚创建的WordPress用户上的查看权限（Check privileges）图标。在详细数据库权限（Database-specific privileges）界面中，在为以下数据库添加权限下拉式菜单中选择之前创建的WordPress数据库。之后页面会刷新为该WordPress数据库的权限详情。点击选中所有，选择所有权限（Check All），最后点击Go。
+
+>(9).在结果页面上，记下页面最上方Server:后的主机名hostname（通常为localhost）。
+
+
+#### 1.6.重启相关Apache和Mysql服务
 
 ```
 sudo service mysql serstart
@@ -56,9 +110,66 @@ sudo systemctl restart apache2.service
 
 ### 2.安装和配置wordpress
 
-#### 2.1.下载wordpress
+#### 2.1.下载wordpress并且解压
 
 ```
-wget 
+wget https://wordpress.org/latest.tar.gz 
+/*可以自己去找最新版或者中文版*/
+tar -zxvf latert.tar.gz
 ```
+#### 2.2.把解压后的wordpress源码复制到网站根目录
+
+```
+cp ./wordpress/*  /var/www/html/
+```
+
+#### 2.3.配置wordpress的数据库信息
+
+两种方式：
+
+- ***编辑文件wp-config.php***
+详细配置请参照[编辑 wp-config.php](https://codex.wordpress.org/zh-cn:%E7%BC%96%E8%BE%91wp-config.php)
+
+```
+返回网站根目录下的wordpress解压后的目录，将wp-config-sample.php重命名为wp-config.php，之后在文本编辑器中打开该文件。
+
+在标有
+ // ** MySQL settings - You can get this info from your web host ** //
+下输入你的数据库相关信息
+
+DB_NAME 
+你的网站数据库名称
+
+DB_USER 
+你的网站数据库管理员帐号
+
+DB_PASSWORD 
+你爹网站数据库管理员帐号的密码
+
+DB_HOST 
+hostname（通常是localhost，也可以写ip。但总有例外；参见编辑wp-config.php文件中的“可能的DB_HOST值）。
+
+DB_CHARSET 
+数据库字符串，通常不可更改（参见zh-cn:编辑wp-config.php）。
+DB_COLLATE 
+留为空白的数据库排序（参见zh-cn:编辑wp-config.php）。
+在标有
+
+  * Authentication Unique Keys.
+  的版块下输入密钥的值，保存wp-config.php文件。
+  从2.6版开始，存在3种安全密钥，AUTH_KEY，SECURE_AUTH_KEY和LOGGED_IN_KEY，它们能够保证用户cookies中的信息得到更好的加密。在2.7版中引入了第四种密钥，NONCE_KEY。
+你无需记住这些密钥，只要保证它们越长越复杂越好，你可以使用[在线密钥生成器](https://api.wordpress.org/secret-key/1.1/)。
+
+  例如:
+  ---------------------------------------------------------------------
+define('AUTH_KEY',        '2Zf%P3mLKOy:nDykt w`w77IhTiS|jj8cH:oNJ0#r&>VX*Vs&WktX2s^9+N;YLG<');
+define('SECURE_AUTH_KEY', 'D3c%SVTyYl,dBXK%$u=wI%8vHkg*tNsR0+Tz/mJh$i&O^RIdu]t++TVn4;A?vy~ ');
+define('LOGGED_IN_KEY',   'F3:)_mHo4(.XCK2>u|Lg0%<xUcCjv9([0{X-d^ipM+[-/ls<Aw9mxVvxS#|aW[ #');
+define('NONCE_KEY',       'E5;b!BF4=3kF0)B<y6H+zyp/!?~2&0m(z5]>]F]&o@_.-9c:3H{A;/sOGi9XF+xY');
+  ---------------------------------------------------------------------
+```
+[在线密钥生成器](https://api.wordpress.org/secret-key/1.1/)
+
+
+
 
