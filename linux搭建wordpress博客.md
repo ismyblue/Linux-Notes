@@ -53,7 +53,7 @@ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpadmin
 为wordpress程序创建一个数据库，分配管理数据库的帐号和密码。
 有两种操作方式：建议选择命令行，因为不用使用鼠标，全程用键盘五分钟配置网站。
 
-- ***命令行操作方式***
+- ***(1).命令行操作方式***
 
 ```
 /*登录mysql数据库管理系统*/
@@ -75,7 +75,7 @@ Query OK, 0 rows affected (0.01 sec)
 
 ```
 
-- ***图形化操作方式***
+- ***(2).图形化操作方式***
 
 首先登录到phpmyadmin的登录界面，在浏览器输入
 www.youdomain.com/phpmyadmin/index.php
@@ -128,7 +128,7 @@ cp ./wordpress/*  /var/www/html/
 
 两种方式：
 
-- ***编辑文件wp-config.php***
+- ***(2).编辑文件wp-config.php***
 详细配置请参照[编辑 wp-config.php](https://codex.wordpress.org/zh-cn:%E7%BC%96%E8%BE%91wp-config.php)
 
 ```
@@ -171,7 +171,7 @@ define('NONCE_KEY',       'E5;b!BF4=3kF0)B<y6H+zyp/!?~2&0m(z5]>]F]&o@_.-9c:3H{A;
 ```
 [在线密钥生成器](https://api.wordpress.org/secret-key/1.1/)
 
-- ***编辑文件wp-config.php***
+- ***(2)图形化界面操作配置wp-config.php***
 
 用户可以在web浏览器中加载***wp-admin/setup-config.php***以新建wp-config.php文件。
 
