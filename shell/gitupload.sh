@@ -6,18 +6,17 @@
 if [ $# -eq 0 ] || [ $1 == "--help" ] ; then
   echo "--help 帮助"
   echo "gitupload.sh para1 para2   所带参数会全部变成提交备注" 
+  exit;
 fi
 
 
 str="auto commit"
 
-if [ $# -ge 1 ] ; then
 for f in $*
 do
    str=$str" "$f
 done
 
-fi
 
 echo $str
 
