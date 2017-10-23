@@ -26,15 +26,15 @@ sudo $online update
 echo "安装apache2"
 sudo $online install apache2
 echo "安装php7.0"
-sudo apt install php7.0
+sudo $online install php7.0
 echo "安装libapache2-mod-php7.0"
-sudo apt install libapache2-mod-php7.0
+sudo $online install libapache2-mod-php7.0
 echo "安装mysql-server"
-sudo apt install mysql-server
+sudo $online install mysql-server
 echo "安装php7.0-mysql"
-sudo apt install php7.0-mysql
+sudo $online install php7.0-mysql
 echo "安装phpmyadmin"
-sudo apt install phpmyadmin
+sudo $online install phpmyadmin
 echo "建立 /var/www/html下的软链接，可以在/var/www/html/phpmyadmin里直接访问/usr/share/phpmyadmin里面的程序"
 sudo ln -s /usr/share/phpmyadmin /var/www/html/phpadmin
 
