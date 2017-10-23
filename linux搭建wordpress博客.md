@@ -171,6 +171,24 @@ define('NONCE_KEY',       'E5;b!BF4=3kF0)B<y6H+zyp/!?~2&0m(z5]>]F]&o@_.-9c:3H{A;
 ```
 [在线密钥生成器](https://api.wordpress.org/secret-key/1.1/)
 
+- ***编辑文件wp-config.php***
+
+用户可以在web浏览器中加载***wp-admin/setup-config.php***以新建wp-config.php文件。
+
+![setup-config.php](https://codex.wordpress.org/images/5/5d/setup-config.png)
+
+WordPress询问用户数据库的具体情况并将之写入新的wp-config.php文件。如果新文件创建成功，用户可以继续安装；否则需手动设置wp-config.php文件。
 
 
+#### 2.4.运行wordpress安装脚本
+
+在常用的web浏览器中运行安装脚本。
+将WordPress文件放在根目录下的用户请访问：
+http://youdomain.com/wp-admin/install.php或者http://ip/wp-admin/install.php
+将WordPress文件放在子目录（假设子目录名为blog）下的用户请访问：
+http://youdomain.com/blog/wp-admin/install.php或者http://ip/blog/wp-admin/install.php
+
+![install.php](https://codex.wordpress.org/images/thumb/1/1b/install-step5.png/640px-install-step5.png)
+
+![success](https://codex.wordpress.org/images/thumb/4/46/install-step6.png/640px-install-step6.png)
 
