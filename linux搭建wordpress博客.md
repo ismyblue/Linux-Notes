@@ -78,8 +78,8 @@ Query OK, 0 rows affected (0.01 sec)
 - ***(2).图形化操作方式***
 
 首先登录到phpmyadmin的登录界面，在浏览器输入
-www.youdomain.com/phpmyadmin/index.php
-或者http:ip//phpmyadmin/index.php
+http://youdomain.com/phpmyadmin/index.php
+或者ip//phpmyadmin/index.php
 使用mysql 的root帐号和密码登录。
 
 >(1)为WordPress数据库起个名字（可以使用'wordpress'或'blog'），将其输入到添加新数据库（Create new database）输入框中，并点击添加数据库（Create）。
@@ -191,4 +191,30 @@ http://youdomain.com/blog/wp-admin/install.php或者http://ip/blog/wp-admin/inst
 ![install.php](https://codex.wordpress.org/images/thumb/1/1b/install-step5.png/640px-install-step5.png)
 
 ![success](https://codex.wordpress.org/images/thumb/4/46/install-step6.png/640px-install-step6.png)
+
+### 3.登录网站后台，测试
+
+#### 3.1.登录网站后台
+
+进入登录界面，假设你域名为 youdomain.com
+浏览器输入 http://youdomain.com/wp-login.php
+如果wordpress源码放在网站子目录下就是 http://youdomain.com/wordpress/wp-login.php
+
+输入你的2.4步骤创建的帐号密码。登录后台更换主题，添加文章等等操作。
+
+注：主题需要更换就要上传主题(前端模板)到网站目录下，/var/www/html/wp-content/theme/
+
+这个目录放你的主题，也就是前端模板。
+linux上传文件到服务器的命令为：
+```
+scp -r ~/mytheme username@ip:/var/www/html/wp-content/theme/
+```
+如果你的本地PC是windows可以使用FileZilla等FTP传输工具上传文件。
+
+#### 3.2.访问你的网站
+
+浏览器输入：http://youdomain.com
+
+***author: Bruce***
+***email: ismyblue@163.com***
 
