@@ -23,6 +23,7 @@ fi
 #开始LAMP
 echo "更新安装源"
 sudo $online update
+
 echo "安装apache2"
 sudo $online install apache2
 echo "安装php7.0"
