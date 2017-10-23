@@ -77,7 +77,8 @@ Query OK, 0 rows affected (0.01 sec)
 
 - ***图形化操作方式***
 
-首先登录到phpmyadmin的登录界面，在浏览器输入www.youdomain.com/phpmyadmin/index.php
+首先登录到phpmyadmin的登录界面，在浏览器输入
+www.youdomain.com/phpmyadmin/index.php
 或者http:ip//phpmyadmin/index.php
 使用mysql 的root帐号和密码登录。
 
