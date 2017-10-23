@@ -19,5 +19,5 @@ git commit -m "auto update"
 echo -e "\n------------------\n更新本地仓库到远程仓库...\n------------------\n"
 git push origin master
 echo -e "\n------------------\n查看更新日志...\n------------------\n"
-git log
+#git log
 echo -e "\n------------------\n操作完毕！...\n------------------\n"
