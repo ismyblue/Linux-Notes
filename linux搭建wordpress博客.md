@@ -57,7 +57,7 @@ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpadmin
 
 ```
 /*登录mysql数据库管理系统*/
-$mysql -u -root -p
+$mysql -u root -p
 Enter password:
 Welcome to the MySQL monitor. Commands end with ; or \g.
 
@@ -116,7 +116,7 @@ sudo systemctl restart apache2.service
 ```
 wget https://wordpress.org/latest.tar.gz 
 /*可以自己去找最新版或者中文版*/
-tar -zxvf latert.tar.gz
+tar -zxvf latest.tar.gz
 ```
 #### 2.2.把解压后的wordpress源码复制到网站根目录
 
