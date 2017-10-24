@@ -10,7 +10,7 @@ if [ $# -eq 0 ] || [ $1 == "--help" ] ; then
 fi
 
 
-str="auto commit"
+str=""
 
 for f in $*
 do
