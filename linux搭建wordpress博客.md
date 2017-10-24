@@ -1,5 +1,5 @@
 # linux搭建wordpress博客
-
+本教程适合ubuntu
 [TOC]
 
 ## 步骤：
@@ -105,7 +105,7 @@ http://youdomain.com/phpmyadmin/index.php
 #### 1.6.重启相关Apache和Mysql服务
 
 ```
-sudo service mysql serstart
+sudo service mysql start
 sudo systemctl restart apache2.service
 ```
 
