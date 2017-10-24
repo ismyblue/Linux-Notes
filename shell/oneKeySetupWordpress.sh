@@ -46,7 +46,7 @@ sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 #echo "登录mysql"
 #mysql -u root -p
 #create databases wordpressdb;
-#greate all privileges on wordpressdb.* to "wordpressdb"@"wordpressadmin" identified by "wordpresspasswd";
+#grant all privileges on wordpressdb.* to "wordpressuser"@"localhost" identified by "wordpresspasswd";
 #flush privileges;
 #exit;
 
@@ -57,9 +57,9 @@ wget https://wordpress.org/latest.tar.gz
 echo "解压wordpress源码包"
 tar -zxvf latest.tar.gz
 echo "删除apache2的默认的index.php"
-sudo mv /var/www/html/index.html index.html~
+sudo mv /var/www/html/index.html /var/www/html/index.html~
 echo "把解压后的wordpress源码复制到网站根目录"
-sudo cp -v ./wordpress/*  /var/www/html/
+sudo cp -vr ./wordpress/*  /var/www/html/
 sudo service mysql start
 if [ $online == "apt" ] ; then
 sudo systemctl restart apache2.service
