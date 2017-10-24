@@ -53,8 +53,8 @@ wget https://wordpress.org/latest.tar.gz
 echo "解压wordpress源码包"
 tar -zxvf latest.tar.gz
 echo "把解压后的wordpress源码复制到网站根目录"
-cp -v ./wordpress/*  /var/www/html/
-sudo service mysql serstart
+sudo cp -v ./wordpress/*  /var/www/html/
+sudo service mysql start
 sudo systemctl restart apache2.service
 
 
