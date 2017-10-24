@@ -41,7 +41,7 @@ sudo $online install php7.0-mysql
 echo "安装phpmyadmin"
 sudo $online install phpmyadmin
 echo "建立 /var/www/html下的软链接，可以在/var/www/html/phpmyadmin里直接访问/usr/share/phpmyadmin里面的程序"
-sudo ln -s /usr/share/phpmyadmin /var/www/html/phpadmin
+sudo ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin
 
 #echo "登录mysql"
 #mysql -u root -p
@@ -56,6 +56,8 @@ echo "下载wordpress源码"
 wget https://wordpress.org/latest.tar.gz
 echo "解压wordpress源码包"
 tar -zxvf latest.tar.gz
+echo "删除apache2的默认的index.php"
+sudo mv /var/www/html/index.html index.html~
 echo "把解压后的wordpress源码复制到网站根目录"
 sudo cp -v ./wordpress/*  /var/www/html/
 sudo service mysql start
