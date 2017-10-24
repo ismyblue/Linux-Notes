@@ -25,7 +25,11 @@ echo "更新安装源"
 sudo $online update
 
 echo "安装apache2"
-sudo $online install apache2
+if [ $online == "apt" ] ; then
+  sudo $online install apache2
+else
+  sudo $online install httpd
+fi
 echo "安装php7.0"
 sudo $online install php7.0
 echo "安装libapache2-mod-php7.0"
@@ -55,8 +59,11 @@ tar -zxvf latest.tar.gz
 echo "把解压后的wordpress源码复制到网站根目录"
 sudo cp -v ./wordpress/*  /var/www/html/
 sudo service mysql start
+if [ $online == "apt" ] ; then
 sudo systemctl restart apache2.service
-
+else
+service httpd start
+fi
 
 #######################################################
 echo "首先登录到phpmyadmin的登录界面，在浏览器输入
